@@ -1,0 +1,44 @@
+{
+  "entities": {
+    "UserProfile": {
+      "collection": "users",
+      "fields": {
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "lastSyncedAt": { "type": "string" }
+      }
+    },
+    "Bookmark": {
+      "collection": "users/{userId}/bookmarks",
+      "fields": {
+        "url": { "type": "string" },
+        "title": { "type": "string" },
+        "siteName": { "type": "string" },
+        "byline": { "type": "string" },
+        "content": { "type": "string" },
+        "excerpt": { "type": "string" },
+        "readTimeMinutes": { "type": "number" },
+        "tags": { "type": "array" },
+        "isFavorite": { "type": "boolean" },
+        "isArchived": { "type": "boolean" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "Highlight": {
+      "collection": "users/{userId}/highlights",
+      "fields": {
+        "bookmarkId": { "type": "string" },
+        "text": { "type": "string" },
+        "color": { "type": "string" },
+        "note": { "type": "string" },
+        "tags": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "paragraphIndex": { "type": "number" }
+      }
+    }
+  }
+}

@@ -1,0 +1,782 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: 'Source Serif 4', Georgia, Cambria, 'Times New Roman', serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --font-pop: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+  }
+}
+
+/* Custom highlight color classes with clean readable background & subtle dark border / contrast */
+.highlight-yellow {
+  background-color: rgba(254, 240, 138, 0.7);
+  box-shadow: 0 1px 0 rgba(234, 179, 8, 0.4);
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+.highlight-green {
+  background-color: rgba(187, 247, 208, 0.75);
+  box-shadow: 0 1px 0 rgba(34, 197, 94, 0.4);
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+.highlight-blue {
+  background-color: rgba(191, 219, 254, 0.75);
+  box-shadow: 0 1px 0 rgba(59, 130, 246, 0.4);
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+.highlight-pink {
+  background-color: rgba(251, 207, 232, 0.75);
+  box-shadow: 0 1px 0 rgba(236, 72, 153, 0.4);
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+.highlight-purple {
+  background-color: rgba(233, 213, 255, 0.75);
+  box-shadow: 0 1px 0 rgba(168, 85, 247, 0.4);
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+.highlight-orange {
+  background-color: rgba(254, 215, 170, 0.8);
+  box-shadow: 0 1px 0 rgba(249, 115, 22, 0.4);
+  border-radius: 2px;
+  padding: 1px 2px;
+}
+
+/* Reader mode color schemes */
+.reader-theme-light {
+  background-color: #ffffff;
+  color: #171717;
+}
+
+.reader-theme-sepia {
+  background-color: #fbf0d9;
+  color: #433422;
+}
+
+.reader-theme-slate {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+.reader-theme-charcoal {
+  background-color: #23272e;
+  color: #e2e8f0;
+}
+
+.reader-theme-night {
+  background-color: #0d1117;
+  color: #c9d1d9;
+}
+
+/* E-Ink Paper Mode: monochromatic, paper-matte, zero glare */
+.reader-theme-e-ink {
+  background-color: #f0eee7;
+  color: #1a1a1a;
+  border-color: #d1cfc7;
+}
+
+.reader-theme-e-ink .highlight-yellow,
+.reader-theme-e-ink .highlight-green,
+.reader-theme-e-ink .highlight-blue,
+.reader-theme-e-ink .highlight-pink,
+.reader-theme-e-ink .highlight-purple,
+.reader-theme-e-ink .highlight-orange {
+  background-color: rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.85);
+  border-radius: 1px;
+}
+
+/* Minimalist Swiss Mode: pure contrast, whitespace, airy stark precision */
+.reader-theme-minimal {
+  background-color: #ffffff;
+  color: #09090b;
+}
+
+.reader-theme-minimal h1 {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+/* Anime Comic Pop / Neo-Brutalist Style Theme (from user reference) */
+.reader-theme-anime {
+  background-color: #e8e4d8;
+  color: #000000;
+  font-family: var(--font-pop);
+}
+
+.reader-theme-anime article {
+  background-color: #fef8e2;
+  border: 2.5px solid #000000;
+  border-radius: 24px;
+  box-shadow: 6px 6px 0px #000000;
+  padding: 2.5rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 640px) {
+  .reader-theme-anime article {
+    padding: 1.5rem;
+    border-width: 2px;
+    box-shadow: 4px 4px 0px #000000;
+    border-radius: 18px;
+  }
+}
+
+.reader-theme-anime h1 {
+  font-family: var(--font-pop);
+  color: #000000;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.reader-theme-anime blockquote {
+  border: 2px solid #000000;
+  background-color: #fcf9ee;
+  border-radius: 12px;
+  box-shadow: 3px 3px 0px #000000;
+  padding: 1rem 1.25rem;
+  font-weight: 500;
+  color: #111111;
+}
+
+/* Neo-Brutalist Anime Pop Highlights */
+.reader-theme-anime .highlight-yellow {
+  background-color: #fef08a;
+  border: 1.5px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+  border-radius: 4px;
+  padding: 2px 4px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.reader-theme-anime .highlight-pink {
+  background-color: #fbcfe8;
+  border: 1.5px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+  border-radius: 4px;
+  padding: 2px 4px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.reader-theme-anime .highlight-blue {
+  background-color: #67e8f9;
+  border: 1.5px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+  border-radius: 4px;
+  padding: 2px 4px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.reader-theme-anime .highlight-green {
+  background-color: #bbf7d0;
+  border: 1.5px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+  border-radius: 4px;
+  padding: 2px 4px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.reader-theme-anime .highlight-purple {
+  background-color: #e9d5ff;
+  border: 1.5px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+  border-radius: 4px;
+  padding: 2px 4px;
+  color: #000000;
+  font-weight: 600;
+}
+
+.reader-theme-anime .highlight-orange {
+  background-color: #fed7aa;
+  border: 1.5px solid #000000;
+  box-shadow: 2px 2px 0px #000000;
+  border-radius: 4px;
+  padding: 2px 4px;
+  color: #000000;
+  font-weight: 600;
+}
+
+/* Anime Pop speech bubble indicator */
+.reader-theme-anime .comment-bubble-indicator {
+  border: 1.5px solid #000000;
+  box-shadow: 1.5px 1.5px 0px #000000;
+  border-radius: 6px;
+  background-color: #ffffff;
+  padding: 0 3px;
+}
+
+/* Sidebar and drawer card styling under anime theme */
+.reader-theme-anime .highlight-card-box {
+  background-color: #fef8e2;
+  border: 2px solid #000000;
+  border-radius: 14px;
+  box-shadow: 3.5px 3.5px 0px #000000;
+}
+
+.reader-theme-anime .pop-button-primary {
+  background-color: #02a4be;
+  color: #000000;
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.reader-theme-anime .pop-button-primary:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+.reader-theme-anime .pop-button-primary:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px #000000;
+}
+
+.reader-theme-anime .pop-badge {
+  background-color: #fef8e2;
+  border: 2px solid #000000;
+  border-radius: 9999px;
+  box-shadow: 2px 2px 0px #000000;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 10px;
+}
+
+/* Pulse animation for jumping to highlight */
+@keyframes highlight-pulse {
+  0% { transform: scale(1); outline: 3px solid rgba(59, 130, 246, 0.8); }
+  50% { transform: scale(1.02); outline: 5px solid rgba(59, 130, 246, 0.5); }
+  100% { transform: scale(1); outline: 2px solid transparent; }
+}
+
+.highlight-jump-target {
+  animation: highlight-pulse 1.2s ease-out;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   GLOBAL APPLICATION THEMES (Applicable across entire app, not just reader)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. ANIME POP / MANGA NEO-BRUTALIST THEME (From User Reference Images)
+   -------------------------------------------------------------------------- */
+.app-theme-anime,
+.theme-anime {
+  background-color: #f4efe6 !important;
+  color: #000000 !important;
+  font-family: var(--font-pop) !important;
+}
+
+/* Anime Header */
+.app-theme-anime header,
+.theme-anime header {
+  background-color: #fffdf4 !important;
+  border-bottom: 2.5px solid #000000 !important;
+  box-shadow: 0 4px 0px #000000 !important;
+}
+
+.app-theme-anime header nav button,
+.theme-anime header nav button {
+  font-family: var(--font-pop) !important;
+  font-weight: 800 !important;
+  color: #000000 !important;
+  border-radius: 10px;
+}
+
+.app-theme-anime header nav button.bg-neutral-100,
+.app-theme-anime header nav button[class*="text-neutral-950 font-semibold"],
+.theme-anime header nav button.bg-neutral-100,
+.theme-anime header nav button[class*="text-neutral-950 font-semibold"] {
+  background-color: #00a3c4 !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 2.5px 2.5px 0px #000000 !important;
+  color: #000000 !important;
+}
+
+/* Anime Cards & Containers */
+.app-theme-anime .bg-white,
+.theme-anime .bg-white,
+.app-theme-anime article,
+.theme-anime article {
+  background-color: #fffdf4 !important;
+  border: 2.5px solid #000000 !important;
+  border-radius: 20px !important;
+  box-shadow: 4px 4px 0px #000000 !important;
+  color: #000000 !important;
+}
+
+.app-theme-anime article:hover,
+.theme-anime article:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px #000000 !important;
+}
+
+/* Anime Primary Buttons (+ New Bookmark, Save, Track, Open) */
+.app-theme-anime .bg-neutral-900:not(.highlight-circle),
+.theme-anime .bg-neutral-900:not(.highlight-circle),
+.app-theme-anime button[type="submit"],
+.theme-anime button[type="submit"] {
+  background-color: #00a3c4 !important;
+  border: 2.5px solid #000000 !important;
+  color: #000000 !important;
+  font-family: var(--font-pop) !important;
+  font-weight: 900 !important;
+  box-shadow: 3.5px 3.5px 0px #000000 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.app-theme-anime .bg-neutral-900:not(.highlight-circle):hover,
+.theme-anime .bg-neutral-900:not(.highlight-circle):hover,
+.app-theme-anime button[type="submit"]:hover,
+.theme-anime button[type="submit"]:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px #000000 !important;
+}
+
+.app-theme-anime .bg-neutral-900:not(.highlight-circle):active,
+.theme-anime .bg-neutral-900:not(.highlight-circle):active,
+.app-theme-anime button[type="submit"]:active,
+.theme-anime button[type="submit"]:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px #000000 !important;
+}
+
+/* Anime Secondary & Auxiliary Buttons */
+.app-theme-anime .bg-neutral-100,
+.theme-anime .bg-neutral-100 {
+  background-color: #fffdf4 !important;
+  border: 2px solid #000000 !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  box-shadow: 2.5px 2.5px 0px #000000 !important;
+}
+
+/* Anime Inputs & Search Bars */
+.app-theme-anime input,
+.app-theme-anime textarea,
+.theme-anime input,
+.theme-anime textarea {
+  background-color: #fffef7 !important;
+  border: 2px solid #000000 !important;
+  color: #000000 !important;
+  font-family: var(--font-pop) !important;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 12px !important;
+}
+
+.app-theme-anime input:focus,
+.app-theme-anime textarea:focus,
+.theme-anime input:focus,
+.theme-anime textarea:focus {
+  box-shadow: 3.5px 3.5px 0px #000000 !important;
+  outline: none !important;
+}
+
+/* Anime Badges, Chips & Tags */
+.app-theme-anime .inline-flex[class*="rounded"],
+.theme-anime .inline-flex[class*="rounded"],
+.app-theme-anime span[class*="bg-neutral-100"],
+.theme-anime span[class*="bg-neutral-100"] {
+  border: 1.5px solid #000000 !important;
+  box-shadow: 1.5px 1.5px 0px #000000 !important;
+  border-radius: 8px !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+}
+
+/* Anime Headings */
+.app-theme-anime h1,
+.app-theme-anime h2,
+.app-theme-anime h3,
+.theme-anime h1,
+.theme-anime h2,
+.theme-anime h3 {
+  font-family: var(--font-pop) !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.03em !important;
+  color: #000000 !important;
+}
+
+/* Anime Footer */
+.app-theme-anime footer,
+.theme-anime footer {
+  background-color: #fffdf4 !important;
+  border-top: 2.5px solid #000000 !important;
+  box-shadow: 0 -4px 0px #000000 !important;
+  color: #000000 !important;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   2. SEPIA BOOKISH WARM PARCHMENT THEME
+   -------------------------------------------------------------------------- */
+.app-theme-sepia,
+.theme-sepia {
+  background-color: #fbf0d9 !important;
+  color: #433422 !important;
+}
+
+.app-theme-sepia header,
+.theme-sepia header {
+  background-color: rgba(251, 240, 217, 0.96) !important;
+  border-bottom: 1px solid #e2d4b7 !important;
+}
+
+.app-theme-sepia .bg-white,
+.theme-sepia .bg-white {
+  background-color: #fef8eb !important;
+  border-color: #e4d3b1 !important;
+  box-shadow: 0 2px 8px rgba(67, 52, 34, 0.05) !important;
+  color: #433422 !important;
+}
+
+.app-theme-sepia .bg-neutral-50,
+.theme-sepia .bg-neutral-50 {
+  background-color: #fbf0d9 !important;
+}
+
+.app-theme-sepia .bg-neutral-100,
+.theme-sepia .bg-neutral-100 {
+  background-color: #f3e5c8 !important;
+  color: #433422 !important;
+  border-color: #dec89e !important;
+}
+
+.app-theme-sepia .bg-neutral-900,
+.theme-sepia .bg-neutral-900 {
+  background-color: #543e26 !important;
+  color: #fef8eb !important;
+}
+
+.app-theme-sepia input,
+.app-theme-sepia textarea,
+.theme-sepia input,
+.theme-sepia textarea {
+  background-color: #fefcf7 !important;
+  border-color: #ded0b2 !important;
+  color: #433422 !important;
+}
+
+.app-theme-sepia .text-neutral-900,
+.app-theme-sepia .text-neutral-800,
+.app-theme-sepia .text-neutral-700,
+.theme-sepia .text-neutral-900,
+.theme-sepia .text-neutral-800,
+.theme-sepia .text-neutral-700 {
+  color: #433422 !important;
+}
+
+.app-theme-sepia .text-neutral-600,
+.app-theme-sepia .text-neutral-500,
+.theme-sepia .text-neutral-600,
+.theme-sepia .text-neutral-500 {
+  color: #786249 !important;
+}
+
+.app-theme-sepia footer,
+.theme-sepia footer {
+  background-color: #fbf0d9 !important;
+  border-top: 1px solid #e2d4b7 !important;
+  color: #786249 !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. E-INK PAPER THEME (Zero-glare, authentic paper-matte monochrome)
+   -------------------------------------------------------------------------- */
+.app-theme-e-ink,
+.theme-e-ink {
+  background-color: #f0eee7 !important;
+  color: #1a1a1a !important;
+}
+
+.app-theme-e-ink header,
+.theme-e-ink header {
+  background-color: #f0eee7 !important;
+  border-bottom: 1.5px solid #cfccc2 !important;
+}
+
+.app-theme-e-ink .bg-white,
+.theme-e-ink .bg-white {
+  background-color: #faf9f5 !important;
+  border: 1.5px solid #cfccc2 !important;
+  box-shadow: none !important;
+  color: #1a1a1a !important;
+}
+
+.app-theme-e-ink .bg-neutral-50,
+.app-theme-e-ink .bg-neutral-100,
+.theme-e-ink .bg-neutral-50,
+.theme-e-ink .bg-neutral-100 {
+  background-color: #e5e3dc !important;
+  border-color: #cfccc2 !important;
+  color: #1a1a1a !important;
+}
+
+.app-theme-e-ink .bg-neutral-900,
+.theme-e-ink .bg-neutral-900 {
+  background-color: #1a1a1a !important;
+  color: #faf9f5 !important;
+  border: 1px solid #1a1a1a !important;
+}
+
+.app-theme-e-ink input,
+.app-theme-e-ink textarea,
+.theme-e-ink input,
+.theme-e-ink textarea {
+  background-color: #ffffff !important;
+  border: 1.5px solid #cfccc2 !important;
+  color: #1a1a1a !important;
+}
+
+.app-theme-e-ink footer,
+.theme-e-ink footer {
+  background-color: #f0eee7 !important;
+  border-top: 1.5px solid #cfccc2 !important;
+  color: #555555 !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. MINIMALIST SWISS THEME (High contrast, pure white, stark elegance)
+   -------------------------------------------------------------------------- */
+.app-theme-minimal,
+.theme-minimal {
+  background-color: #ffffff !important;
+  color: #09090b !important;
+}
+
+.app-theme-minimal header,
+.theme-minimal header {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e4e4e7 !important;
+}
+
+.app-theme-minimal .bg-white,
+.theme-minimal .bg-white {
+  background-color: #ffffff !important;
+  border-color: #e4e4e7 !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02) !important;
+  color: #09090b !important;
+}
+
+.app-theme-minimal input,
+.app-theme-minimal textarea,
+.theme-minimal input,
+.theme-minimal textarea {
+  background-color: #fafafa !important;
+  border-color: #e4e4e7 !important;
+  color: #09090b !important;
+}
+
+.app-theme-minimal footer,
+.theme-minimal footer {
+  background-color: #ffffff !important;
+  border-top: 1px solid #e4e4e7 !important;
+  color: #71717a !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. SLATE MODERN TECH THEME
+   -------------------------------------------------------------------------- */
+.app-theme-slate,
+.theme-slate {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+.app-theme-slate header,
+.theme-slate header {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #cbd5e1 !important;
+}
+
+.app-theme-slate .bg-white,
+.theme-slate .bg-white {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+.app-theme-slate .bg-neutral-900,
+.theme-slate .bg-neutral-900 {
+  background-color: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+.app-theme-slate footer,
+.theme-slate footer {
+  background-color: #ffffff !important;
+  border-top: 1px solid #cbd5e1 !important;
+  color: #64748b !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. CHARCOAL DARK THEME
+   -------------------------------------------------------------------------- */
+.app-theme-charcoal,
+.theme-charcoal {
+  background-color: #23272e !important;
+  color: #e2e8f0 !important;
+}
+
+.app-theme-charcoal header,
+.theme-charcoal header {
+  background-color: #1e2227 !important;
+  border-bottom: 1px solid #374151 !important;
+  color: #e2e8f0 !important;
+}
+
+.app-theme-charcoal .bg-white,
+.theme-charcoal .bg-white {
+  background-color: #2c313a !important;
+  border-color: #3e4451 !important;
+  color: #e2e8f0 !important;
+}
+
+.app-theme-charcoal .bg-neutral-50,
+.app-theme-charcoal .bg-neutral-100,
+.theme-charcoal .bg-neutral-50,
+.theme-charcoal .bg-neutral-100 {
+  background-color: #1e2227 !important;
+  border-color: #374151 !important;
+  color: #e2e8f0 !important;
+}
+
+.app-theme-charcoal input,
+.app-theme-charcoal textarea,
+.theme-charcoal input,
+.theme-charcoal textarea {
+  background-color: #1c2026 !important;
+  border-color: #4b5263 !important;
+  color: #f8fafc !important;
+}
+
+.app-theme-charcoal .text-neutral-900,
+.app-theme-charcoal .text-neutral-800,
+.app-theme-charcoal .text-neutral-700,
+.theme-charcoal .text-neutral-900,
+.theme-charcoal .text-neutral-800,
+.theme-charcoal .text-neutral-700 {
+  color: #f1f5f9 !important;
+}
+
+.app-theme-charcoal .text-neutral-600,
+.app-theme-charcoal .text-neutral-500,
+.theme-charcoal .text-neutral-600,
+.theme-charcoal .text-neutral-500 {
+  color: #94a3b8 !important;
+}
+
+.app-theme-charcoal .bg-neutral-900,
+.theme-charcoal .bg-neutral-900 {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+.app-theme-charcoal footer,
+.theme-charcoal footer {
+  background-color: #1e2227 !important;
+  border-top: 1px solid #374151 !important;
+  color: #94a3b8 !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. NIGHT OLED THEME
+   -------------------------------------------------------------------------- */
+.app-theme-night,
+.theme-night {
+  background-color: #0d1117 !important;
+  color: #c9d1d9 !important;
+}
+
+.app-theme-night header,
+.theme-night header {
+  background-color: #0d1117 !important;
+  border-bottom: 1px solid #30363d !important;
+  color: #c9d1d9 !important;
+}
+
+.app-theme-night .bg-white,
+.theme-night .bg-white {
+  background-color: #161b22 !important;
+  border-color: #30363d !important;
+  color: #c9d1d9 !important;
+}
+
+.app-theme-night .bg-neutral-50,
+.app-theme-night .bg-neutral-100,
+.theme-night .bg-neutral-50,
+.theme-night .bg-neutral-100 {
+  background-color: #0d1117 !important;
+  border-color: #30363d !important;
+  color: #c9d1d9 !important;
+}
+
+.app-theme-night input,
+.app-theme-night textarea,
+.theme-night input,
+.theme-night textarea {
+  background-color: #010409 !important;
+  border-color: #30363d !important;
+  color: #f0f6fc !important;
+}
+
+.app-theme-night .text-neutral-900,
+.app-theme-night .text-neutral-800,
+.app-theme-night .text-neutral-700,
+.theme-night .text-neutral-900,
+.theme-night .text-neutral-800,
+.theme-night .text-neutral-700 {
+  color: #f0f6fc !important;
+}
+
+.app-theme-night .text-neutral-600,
+.app-theme-night .text-neutral-500,
+.theme-night .text-neutral-600,
+.theme-night .text-neutral-500 {
+  color: #8b949e !important;
+}
+
+.app-theme-night .bg-neutral-900,
+.theme-night .bg-neutral-900 {
+  background-color: #238636 !important;
+  color: #ffffff !important;
+}
+
+.app-theme-night footer,
+.theme-night footer {
+  background-color: #0d1117 !important;
+  border-top: 1px solid #30363d !important;
+  color: #8b949e !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. LIGHT CLEAN THEME
+   -------------------------------------------------------------------------- */
+.app-theme-light,
+.theme-light {
+  background-color: #fafafa !important;
+  color: #171717 !important;
+}
+
+
